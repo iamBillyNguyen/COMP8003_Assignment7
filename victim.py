@@ -117,7 +117,7 @@ def handle_command(attacker_data):
 
 def execute_command(commands):
     output = ""
-    result = subprocess.run(commands, capture_output=True,
+    result = subprocess.run(commands, shell=True, capture_output=True,
                             text=True)  # capture_output=True captures stdout and stderr, text=True decodes the output.
 
     if result.returncode == 0:
