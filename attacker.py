@@ -1,6 +1,7 @@
 import argparse
 import sys
 import socket
+import ipaddress
 
 IP = ""
 PORT = 0
@@ -24,6 +25,15 @@ def parse_arguments():
     IP = args.ip
     PORT = args.port
     COMMAND = args.command
+
+def handle_arguments():
+    if PORT <= 0:
+        print("Error: Port must be a positive integer. Try again.")
+        sys.exit()
+
+    if not ipaddress.ip_address(IP):
+        print("Error: IP address must be a valid IP address. Try again.")
+        sys.exit()
 
 def create_socket():
     print("Attacker - Creating socket...")
@@ -78,6 +88,7 @@ def handle_victim_response(attacker_socket):
 
 if __name__ == "__main__":
     parse_arguments()
+    handle_arguments()
     sock = create_socket()
     connect_socket(sock)
     handle_request(sock)
