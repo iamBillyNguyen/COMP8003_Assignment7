@@ -11,7 +11,7 @@ PORT = 0
 MAX_CONNECTIONS = 10
 BUFFER_SIZE = 1024
 
-UNSUPPORTED_COMMANDS = ["rm", "mv", "mkdir", "touch", "tail", "apt", "brew", "nano", "man", "ssh", "chmod", "crontab", "gdb"]
+UNSUPPORTED_COMMANDS = ["rm", "mv", "mkdir", "touch", "tail", "apt", "brew", "nano", "vim", "man", "ssh", "chmod", "crontab", "gdb"]
 UNSUPPORTED_REDIRECTIONS = [">", "<", ">>", "|"]
 
 def parse_arguments():
