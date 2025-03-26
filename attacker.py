@@ -56,7 +56,7 @@ def connect_socket(attacker_socket):
         attacker_socket.close()
         sys.exit()
 
-def handle_request(attacker_socket):
+def handle_command(attacker_socket):
     print("------------------------------------")
     print("Attacker - Command: {}".format(COMMAND))
 
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     handle_arguments()
     sock = create_socket()
     connect_socket(sock)
-    handle_request(sock)
+    handle_command(sock)
 
     print("Attacker - Closing socket")
     sock.close()
