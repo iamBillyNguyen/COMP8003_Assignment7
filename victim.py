@@ -32,8 +32,8 @@ def parse_arguments():
     PORT = args.port
 
 def handle_arguments():
-    if PORT <= 0:
-        print("Error: Port must be a positive integer. Try again.")
+    if PORT < 1 or PORT > 65535:
+        print("Error: Port number must be between 1 and 65535. Try again.")
         sys.exit()
 
     if not ipaddress.ip_address(IP):
